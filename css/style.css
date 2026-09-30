@@ -1,7 +1,19 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+
+/* Definición de Variables CSS */
+:root {
+    --color-primary: #9a1f40;
+    --color-accent: #d9455f;
+    --color-teal: #74d4c0;
+    --color-bg: #f4f7f8;
+    --color-surface: #ffffff;
+    --color-text-main: #1f2937;
+    --color-text-muted: #4b5563;
+    --color-border: #e5e7eb;
+    --sidebar-width: 260px;
+}
 
 *{
     margin: 0;
@@ -10,30 +22,30 @@
 }
 
 html{
-    scroll-behavior: smooth ;
+    scroll-behavior: smooth;
 }
 
 body{
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
-serif;
-    background-color: #f4f7f8; 
-    color: #1f2937;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--color-bg); 
+    color: var(--color-text-main);
     line-height: 1.6;
     min-height: 100vh;
-    padding-left: 260px;
+    padding-left: var(--sidebar-width);
 }
 
 nav{
-    background-color: #9a1f40 ;
+    background-color: var(--color-primary);
     color: white;
     box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
     position: fixed;
     top: 0;
     left: 0;
-    width: 260px;
+    width: var(--sidebar-width);
     height: 100vh;
     overflow-y: auto;
     z-index: 100;
+    transition: all 0.3s ease;
 }
 
 nav ul{
@@ -47,8 +59,10 @@ nav li{
 }
 
 nav ul li a{
-    display: block;
-    padding: 12px 20px ;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
     color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
     border-radius: 8px;
@@ -57,21 +71,20 @@ nav ul li a{
 }
 
 nav ul li:first-child a{
-    background-color: #d9455f;
+    background-color: var(--color-accent);
     color: white;
     font-weight: 600;
 }
 
 nav ul li a:hover{
-    background-color:#d9455f;
+    background-color: var(--color-accent);
     color: white;
 }
 
-
 header{
-    background-color: #ffffff;
+    background-color: var(--color-surface);
     padding: 3.5rem 2rem;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--color-border);
     text-align: center;
     display: block;
 }
@@ -79,14 +92,14 @@ header{
 header h1{
     font-family: "Bitcount Single", system-ui;
     font-size: clamp(2rem, 4vw, 2.8rem);
-    color: #9a1f40;
+    color: var(--color-primary);
     letter-spacing: -0.02rem;
     margin-bottom: 0.5rem;
 }
 
 header h2{
     font-size: 1.2rem;
-    color: #4b5563;
+    color: var(--color-text-muted);
     font-weight: 400;
 }
 
@@ -99,35 +112,34 @@ main{
 }
 
 section{
-    background: #ffffff;
+    background: var(--color-surface);
     padding: 2.5rem;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     margin-bottom: 2.5rem;
-    border: 1px solid #e5e7eb;
-
+    border: 1px solid var(--color-border);
 }
 
 section h2{
     font-family: "Syne Mono", monospace;
     font-size: 1.8rem;
-    color: #9a1f40;
+    color: var(--color-primary);
     margin-bottom: 1.5rem;
-    border-bottom: 3px solid #74d4c0;
+    border-bottom: 3px solid var(--color-teal);
     padding: 0.5rem;
     display: inline-block;
 }
 
 section h3{
-font-size: 1.3rem;
-color: #1f2937;
-margin-top: 1.5rem;
-margin-bottom: 1rem
+    font-size: 1.3rem;
+    color: var(--color-text-main);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 p{
     margin-bottom: 1.2rem;
-    color: #4b5563;
+    color: var(--color-text-muted);
     font-size: 1.05rem;
     text-wrap: pretty;
 }
@@ -137,12 +149,104 @@ p:last-child{
 }
 
 footer{
-    background-color: #ffffff;
+    background-color: var(--color-surface);
     padding: 2rem;
     text-align: center;
-    border-top: 1px solid #e5e7eb;
-    color: #4b5563;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
     font-size: 0.95rem;
     font-weight: 500;
     display: block;
+}
+
+
+/* ==========================================
+   MEDIA QUERIES (TABLETS Y CELULARES)
+   ========================================== */
+
+/* --- TABLETS (Ancho menor o igual a 1024px) --- */
+@media (max-width: 1024px) {
+    :root {
+        --sidebar-width: 220px; /* Reducimos el ancho del menú lateral */
+    }
+
+    body {
+        padding-left: var(--sidebar-width);
+    }
+
+    main {
+        padding: 2rem 1.5rem;
+    }
+
+    section {
+        padding: 2rem;
+    }
+}
+
+
+/* --- CELULARES (Ancho menor o igual a 768px) --- */
+@media (max-width: 768px) {
+    body {
+        padding-left: 0; /* Quitamos el espacio lateral del body */
+        padding-bottom: 70px; /* Espacio abajo para que el menú fijo no tape el contenido */
+    }
+
+    /* Transformamos el menú en una barra inferior flotante */
+    nav {
+        width: 100%;
+        height: 60px;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+        overflow-y: visible;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 0;
+        padding: 0 0.5rem;
+        height: 100%;
+    }
+
+    nav li {
+        margin-bottom: 0;
+    }
+
+    /* Ocultamos el texto y dejamos únicamente los iconos */
+    nav ul li a span {
+        display: none; 
+    }
+
+    nav ul li a {
+        padding: 10px;
+        justify-content: center;
+        border-radius: 50%; /* Los hacemos circulares para los iconos */
+        width: 45px;
+        height: 45px;
+    }
+
+    nav ul li a img {
+        width: 24px;
+        height: 24px;
+    }
+
+    header {
+        padding: 2rem 1rem;
+    }
+
+    main {
+        padding: 1.5rem 1rem;
+    }
+
+    section {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    section h2 {
+        font-size: 1.4rem;
+    }
 }
